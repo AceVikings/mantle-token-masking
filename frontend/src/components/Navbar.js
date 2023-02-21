@@ -14,12 +14,12 @@ const Navbar = () => {
       <ul>
         <li>
           <Link to="/mask" className="nav--link">
-            Mask URI
+            Create
           </Link>
         </li>
         <li>
-          <Link to="/mymask" className="nav--link">
-            My Masks
+          <Link to="/dashboard" className="nav--link">
+            Dashboard
           </Link>
         </li>
       </ul>

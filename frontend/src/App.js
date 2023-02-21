@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -12,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mask" element={<Mask />} />
-        <Route path="/mymask" element={<MyMasks />} />
+        <Route path="/dashboard" element={<MyMasks />} />
       </Routes>
     </div>
   );

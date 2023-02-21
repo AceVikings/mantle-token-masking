@@ -8,6 +8,20 @@ require("dotenv").config();
 
 const provider = new ethers.JsonRpcProvider(process.env.RPC);
 
+const nameExists = asyncHandler(async (req, res) => {
+  try {
+    let mask = await project.findOne({ name: req.params.project });
+    if (mask) {
+      res.status(200).json({ exist: true });
+    } else {
+      res.status(200).json({ exist: false });
+    }
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ message: err.message });
+  }
+});
+
 const getToken = asyncHandler(async (req, res) => {
   try {
     let mask = await project.findOne({ name: req.params.project });
@@ -52,10 +66,11 @@ const setMask = asyncHandler(async (req, res) => {
       res.status(201).json(mask);
     }
   } catch (err) {
+    console.log(err.message);
     res.status(400).json({
       message: err.message,
     });
   }
 });
 
-module.exports = { getToken, setMask };
+module.exports = { getToken, setMask, nameExists };
