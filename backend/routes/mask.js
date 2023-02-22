@@ -4,8 +4,10 @@ const {
   getToken,
   setMask,
   nameExists,
+  getUser,
 } = require("../controllers/maskController");
 
-router.route("/:project/:token").get(getToken);
+router.route("/user/:user").get(getUser);
 router.route("/:project").post(setMask).get(nameExists);
+router.route("/:project/:token").get(getToken);
 module.exports = router;

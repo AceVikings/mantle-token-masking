@@ -26,7 +26,6 @@ const getToken = asyncHandler(async (req, res) => {
   try {
     let mask = await project.findOne({ name: req.params.project });
     let contract = new Contract(mask.contract, erc721abi, provider);
-    console.log(req.params.token);
     try {
       let owner = await contract.ownerOf(req.params.token);
       let result = await fetch(
@@ -34,7 +33,6 @@ const getToken = asyncHandler(async (req, res) => {
       );
 
       result = await result.json();
-      console.log(result);
       return res.status(200).json(result);
     } catch (err) {
       if (mask.default) return res.status(400).json(JSON.parse(mask.default));
@@ -47,11 +45,24 @@ const getToken = asyncHandler(async (req, res) => {
   }
 });
 
+const getUser = asyncHandler(async (req, res) => {
+  try {
+    const masks = await project.find({ user: req.params.user });
+    res.status(200).json(masks);
+  } catch (err) {
+    console.log(err.message);
+    res.status(400).json({
+      message: err.message,
+    });
+  }
+});
+
 const setMask = asyncHandler(async (req, res) => {
   try {
     if (req.body.default) {
       const mask = await project.create({
         name: req.params.project,
+        user: req.body.user,
         contract: req.body.contract,
         cid: req.body.cid,
         default: req.body.default,
@@ -60,6 +71,7 @@ const setMask = asyncHandler(async (req, res) => {
     } else {
       const mask = await project.create({
         name: req.params.project,
+        user: req.body.user,
         contract: req.body.contract,
         cid: req.body.cid,
       });
@@ -73,4 +85,4 @@ const setMask = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { getToken, setMask, nameExists };
+module.exports = { getToken, setMask, nameExists, getUser };

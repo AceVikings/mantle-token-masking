@@ -3,7 +3,8 @@ import "../styles/Mask.css";
 import { ethers } from "ethers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const Mask = () => {
+const Mask = (props) => {
+  const { address } = props;
   const [form, setForm] = useState({
     name: "",
     contract: "",
@@ -22,6 +23,19 @@ const Mask = () => {
   };
 
   const handleSubmit = async () => {
+    if (!address) {
+      toast.error("Metamask not connected", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return;
+    }
     if (!ethers.isAddress(form.contract)) {
       toast.error("Invalid Address", {
         position: "top-right",
@@ -58,6 +72,7 @@ const Mask = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        user: address,
         contract: form.contract,
         cid: form.cid,
         default: form.default,

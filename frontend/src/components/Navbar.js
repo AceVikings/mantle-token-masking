@@ -3,7 +3,8 @@ import "../styles/Navbar.css";
 import logo from "../images/logo.png";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const { connectWallet, address } = props;
   return (
     <div className="navbar">
       <Link to="/" className="nav--home">
@@ -21,6 +22,11 @@ const Navbar = () => {
           <Link to="/dashboard" className="nav--link">
             Dashboard
           </Link>
+        </li>
+        <li>
+          <div className="wallet-button" onClick={connectWallet}>
+            {address ? address : "Connect Wallet"}
+          </div>
         </li>
       </ul>
     </div>

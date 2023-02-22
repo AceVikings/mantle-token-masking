@@ -1,0 +1,47 @@
+.mymask {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mymask > h1 {
+  color: hotpink;
+  font-size: 48px;
+}
+
+.detail-container {
+  border-style: solid;
+  border-color: hotpink;
+  width: 90%;
+  border-width: 1px;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-row {
+  display: grid;
+  background-color: hotpink;
+  grid-template-columns: 10% 20% 35% 35%;
+  grid-template-rows: 1fr;
+  gap: 5px 1px;
+  text-indent: 5px;
+  grid-auto-flow: row;
+  justify-items: start;
+  align-items: center;
+  overflow: hidden;
+  grid-template-areas: ". . . .";
+  border-right: 1px solid;
+  border-color: hotpink;
+}
+
+.detail-row > p {
+  height: 100%;
+  background-color: #121117;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  align-items: center;
+  /* padding-right: 20px; */
+  /* justify-content: center; */
+}
