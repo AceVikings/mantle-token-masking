@@ -17,7 +17,7 @@ EzMask allows you to mask that data using our backend, by simply filling out a f
 
 After that you'll receive a mask URL from our backend which can be used as base URI for your token metadata. ITS THAT SIMPLE!
 
----
+## ![dashboard](screenshots/3.png)
 
 How to run ?
 
