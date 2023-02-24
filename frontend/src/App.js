@@ -9,6 +9,7 @@ import { ethers } from "ethers";
 function App() {
   const [address, setAddress] = useState();
   const [signer, setSigner] = useState();
+
   async function requestWallet() {
     try {
       const accounts = await window.ethereum.request({

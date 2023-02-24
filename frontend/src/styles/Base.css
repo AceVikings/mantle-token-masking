@@ -1,0 +1,26 @@
+@import "./Colors.css";
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.color-primary {
+  color: var(--primary);
+}
+
+.color-secondary {
+  color: var(--secondary);
+}
+
+.color-mpink {
+  color: var(--pink-main);
+}
+
+.color-spink {
+  color: var(--pink-secondary);
+}

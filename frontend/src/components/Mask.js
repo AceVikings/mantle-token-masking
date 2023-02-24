@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../styles/Mask.css";
+import "../styles/Tooltip.css";
 import { ethers } from "ethers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 const Mask = (props) => {
   const { address } = props;
   const [form, setForm] = useState({
@@ -10,13 +12,15 @@ const Mask = (props) => {
     contract: "",
     cid: "",
     default: "",
+    isGate: false,
   });
   const [maskURL, setMask] = useState();
   const handleChange = (event) => {
+    const { name, value, type, checked } = event.target;
     setForm((prevFormData) => {
       return {
         ...prevFormData,
-        [event.target.name]: event.target.value,
+        [name]: type === "checkbox" ? checked : value,
       };
     });
     console.log(form);
@@ -107,7 +111,7 @@ const Mask = (props) => {
   };
   return (
     <div className="mask">
-      <h1>Create Mask</h1>
+      <h1 className="tooltip">Create Mask</h1>
       <ToastContainer />
       <form className="form">
         <label className="form-row" htmlFor="name">
@@ -146,6 +150,26 @@ const Mask = (props) => {
             value={form.default}
           ></input>
         </label>
+        <div className="checkbox-group tooltip">
+          <input
+            type="checkbox"
+            name="isGate"
+            id="isGate"
+            checked={form.isGate}
+            onChange={handleChange}
+          ></input>
+          <label htmlFor="isGate">Add Gating ?</label>
+          <AiOutlineInfoCircle className="info" />
+          <div class="right">
+            <h3>Gating vs Masking</h3>
+            <p>
+              Gating adds an additional check to metadata reveal, wherein the
+              user must verify to be the valid owner of the token to reveal the
+              metadata
+            </p>
+            <i></i>
+          </div>
+        </div>
       </form>
       <div className="form-button" onClick={handleSubmit}>
         Submit

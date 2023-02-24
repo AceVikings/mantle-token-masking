@@ -9,26 +9,28 @@ const Navbar = (props) => {
     <div className="navbar">
       <Link to="/" className="nav--home">
         <img className="nav--logo" src={logo} />
-        <h1>EzMask</h1>
+        <h1>
+          Ez<span className="color-primary">Mask</span>
+        </h1>
       </Link>
 
-      <ul>
-        <li>
-          <Link to="/mask" className="nav--link">
-            Create
-          </Link>
-        </li>
-        <li>
-          <Link to="/dashboard" className="nav--link">
-            Dashboard
-          </Link>
-        </li>
-        <li>
-          <div className="wallet-button" onClick={connectWallet}>
-            {address ? address : "Connect Wallet"}
-          </div>
-        </li>
-      </ul>
+      <div className="nav-options">
+        <ul>
+          <li>
+            <Link to="/mask" className="nav--link">
+              Create
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard" className="nav--link">
+              Dashboard
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="wallet-button" onClick={connectWallet}>
+        {address ? address : "Connect Wallet"}
+      </div>
     </div>
   );
 };
