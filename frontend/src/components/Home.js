@@ -1,40 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Home.css";
+import gated from "../images/gated.png";
 const Home = () => {
-  const [header2, setHeader2] = useState({
-    text: "Secure Your Metadata",
-    index: 0,
-  });
-  let headerText = ["Secure Your Metadata", "Create Gated Content"];
-
-  const updateHeader2Text = () => {
-    setHeader2((prevText) => {
-      if (prevText.text === headerText[0]) {
-        return { text: "", index: 1 };
-      } else if (prevText.text === headerText[1]) {
-        return { text: "", index: 0 };
-      } else {
-        return {
-          ...prevText,
-          text:
-            prevText.text + headerText[prevText?.index][prevText?.text?.length],
-        };
-      }
-    });
-  };
-
-  useEffect(() => {
-    updateHeader2Text();
-    const interval = setInterval(updateHeader2Text, 200);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  const debugButton = () => {
-    updateHeader2Text();
-  };
-
   return (
     <div className="home">
       {/* <div id="invertedcursor"></div> */}
@@ -52,12 +19,13 @@ const Home = () => {
             <div className="flex-row home-btn btn-secondary">Try it</div>
           </div>
         </div>
+        <img src={gated} className="home-gated" />
       </section>
       <section className="home-beta-ticker">
         <p className="ticker-content">Beta Coming Soon! Sign up now!</p>
       </section>
       <section className="info-section">
-        <h2 className="home--secondary-header">{`You Can ${header2.text}`}</h2>
+        <h2 className="home--secondary-header">Create Secure Content</h2>
       </section>
       <div className="home--box">
         <h2>How it works</h2>
@@ -72,7 +40,6 @@ const Home = () => {
           metadata
         </p>
       </div>
-      <button onClick={debugButton}>Debug</button>
     </div>
   );
 };
